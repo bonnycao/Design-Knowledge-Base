@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Knowledge Base Index</title>
+<meta content="A searchable index for your UI/UX/AI knowledge base pages." name="description"/>
+<style>
+:root{
+      /* Light mode (default) */
+      --bg: #e8e8e8;
+      --surface: #ffffff;
+      --surface-2: #f6f6f6;
+      --text: #121212;
+      --muted: #4b4b4b;
+      --line: #d5d5d5;
+      --accent: #2b6cff;
+      --accent2: #0aa37f;
+      --shadow: 0 12px 40px rgba(0,0,0,.10);
+
+      /* Toggle */
+      --toggle-track: #ffffff;
+      --toggle-track-border: #cfcfcf;
+      --toggle-knob: #ffffff;
+      --toggle-icon: #1f1f1f;
+      --toggle-track-shadow: 0 2px 10px rgba(0,0,0,.12);
+    }
+
+    html[data-theme="dark"]{
+      --bg: #212121;
+      --surface: #111111;
+      --surface-2: #161616;
+      --text: #f1f1f1;
+      --muted: #c9c9c9;
+      --line: #2b2b2b;
+      --accent: #7aa2ff;
+      --accent2: #7dffcf;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+
+      --toggle-track: #2a2a2a;
+      --toggle-track-border: #3a3a3a;
+      --toggle-knob: #1a1a1a;
+      --toggle-icon: #f1f1f1;
+      --toggle-track-shadow: 0 2px 12px rgba(0,0,0,.45);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    a{color: var(--accent); text-decoration: none}
+    a:hover{text-decoration: underline}
+
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
+
+    header{
+      position: relative;
+      padding:24px 18px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface) 80%, transparent));
+      border-radius:5px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size: 24px;
+      letter-spacing:-0.02em;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size: 16px;
+      max-width: none;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+    .chip{
+      padding:6px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+      font-size:13px;
+      white-space:nowrap;
+    }
+
+    main{margin-top:18px; display:flex; flex-direction:column; gap:16px;}
+
+    .card{
+      border:1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      border-radius:5px;
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:-0.01em;
+    }
+    h3{
+      margin:18px 0 8px;
+      font-size:18px;
+    }
+    p{margin:10px 0;color:var(--muted)}
+    ul{margin: 0; padding-left: 18px;}
+    li{margin:6px 0}
+
+    .callout{
+      border-left: 2px solid var(--accent2);
+      padding: 12px 14px;
+      background: color-mix(in srgb, var(--accent2) 10%, transparent);
+      border-radius: 5px;
+      margin-top: 12px;
+      color: var(--muted);
+    }
+    .callout strong{color:var(--text)}
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: color-mix(in srgb, var(--surface-2) 65%, transparent);
+      margin-top: 10px;
+      color: var(--muted);
+    }
+    .pill b{color:var(--text)}
+
+    .hr{height:1px;background:var(--line);margin:18px 0}
+
+    .mini{font-size:13px;color:var(--muted)}
+
+    .table-wrap{
+      overflow:auto;
+      border:1px solid var(--line);
+      border-radius:5px;
+      background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width: 900px;
+    }
+    thead th{
+      text-align:left;
+      padding:14px 14px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: var(--text);
+      font-weight:650;
+      border-bottom:1px solid var(--line);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+
+      vertical-align: top;
+    }
+    tbody td{
+      padding:14px;
+      border-bottom:1px solid color-mix(in srgb, var(--line) 85%, transparent);
+      vertical-align:top;
+      color:var(--muted);
+
+      font-size: 14px;
+
+      vertical-align: top;
+    }
+    tbody tr:hover td{background: color-mix(in srgb, var(--accent) 7%, transparent)}
+
+    footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      opacity:.9;
+    }
+
+    /* Top-right theme toggle (30% smaller) */
+    .topbar{
+      position:absolute;
+      top:14px;
+      right:14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .toggle{
+      appearance:none;
+      border: 1px solid var(--toggle-track-border);
+      background: var(--toggle-track);
+      width: 64px;
+      height: 31px;
+      border-radius: 999px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--toggle-track-shadow);
+      padding: 0;
+      outline: none;
+    }
+
+    .toggle:focus-visible{
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 35%, transparent), var(--toggle-track-shadow);
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--toggle-track-border));
+    }
+
+    .toggle .knob{
+      position:absolute;
+      top:4px;
+      left:4px;
+      width:23px;
+      height:23px;
+      border-radius: 999px;
+      background: var(--toggle-knob);
+      border: 1px solid color-mix(in srgb, var(--toggle-track-border) 70%, transparent);
+      transition: transform .22s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    html[data-theme="dark"] .toggle .knob{
+      transform: translateX(33px);
+    }
+
+    .toggle .icon{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width:16px;
+      height:16px;
+      color: var(--toggle-icon);
+      opacity: .9;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .toggle .sun{left:10px;}
+    .toggle .moon{right:10px;}
+
+    html[data-theme="light"] .toggle .sun{opacity:1; transform: translateY(-50%) scale(1);}
+    html[data-theme="light"] .toggle .moon{opacity:.45; transform: translateY(-50%) scale(.92);}
+
+    html[data-theme="dark"] .toggle .sun{opacity:.45; transform: translateY(-50%) scale(.92);}
+    html[data-theme="dark"] .toggle .moon{opacity:1; transform: translateY(-50%) scale(1);}
+
+    @media (prefers-reduced-motion: reduce){
+      .toggle .knob, .toggle .icon{transition:none}
+    }
+
+    /* Ensure table row content is top-aligned (override any browser defaults) */
+    tbody td{ vertical-align: top !important; }
+    tbody td ul{ margin-top: 0 !important; margin-bottom: 0 !important; }
+    tbody td li{ margin-top: 0 !important; margin-bottom: 6px !important; }
+/* small page-specific tweaks */
+code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12.5px;
+}
+.table-wrap table{ min-width: 980px; }
+
+
+
+/* Back to Top Button */
+#backToTop{
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  display: none;
+  transition: transform .2s ease, opacity .2s ease;
+}
+#backToTop:hover{ transform: translateY(-2px); }
+
+
+
+
+
+
+#cdnVersionNote br + *,
+#cdnVersionNote span,
+
+
+
+/* Improved code sample styling */
+pre{
+  background: #1e1e1e;
+  color: #f1f1f1;
+  padding: 12px 14px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 10px 0; /* reduced vertical spacing */
+}
+
+html[data-theme="light"] pre{
+  background:#1e1e1e;
+  color:#f1f1f1;
+}
+
+html[data-theme="dark"] pre{
+  background:#0d1117;
+  color:#e6edf3;
+}
+
+pre code{
+  background: transparent;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+
+/* Info Note (Blue) */
+#cdnVersionNote{
+  margin-bottom:20px;
+  background: rgba(43,108,255,0.08);
+  border-left:3px solid #2b6cff;
+  padding:12px 14px;
+  border-radius:5px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+#cdnVersionNote strong{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:15px;
+  color:#2b6cff;
+  margin-bottom:4px; /* reduced spacing */
+}
+
+/* Tips Box (Blue style with bulb icon) */
+.callout{
+  background: rgba(43,108,255,0.08);
+  border-left:3px solid #2b6cff;
+  padding:12px 14px;
+  border-radius:5px;
+  margin-top:12px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.callout strong{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#2b6cff;
+  margin-bottom:4px;
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div aria-label="Theme toggle" class="topbar">
+<button aria-label="Toggle dark mode" aria-pressed="false" class="toggle" id="themeToggle" type="button">
+<svg aria-hidden="true" class="icon sun" fill="none" viewbox="0 0 24 24">
+<path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<svg aria-hidden="true" class="icon moon" fill="none" viewbox="0 0 24 24">
+<path d="M21 14.5A8.5 8.5 0 0 1 9.5 3a7 7 0 1 0 11.5 11.5Z" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span aria-hidden="true" class="knob"></span>
+</button>
+</div>
+<h1>Knowledge Base Index</h1>
+<p class="subtitle">UI / UX / AI — One page per day. Unified template, searchable, and continuously expandable.</p>
+<div aria-label="topics" class="chips"><span class="chip">UI</span><span class="chip">UX</span><span class="chip">AI</span><span class="chip">Checklist</span><span class="chip">Patterns</span><span class="chip">Templates</span></div>
+</header>
+<main>
+<section class="card"><h2>Pages</h2><div class="pill"><b>Search</b> · <input id="kbSearch" placeholder="Search by title or tag…" style="border:1px solid var(--line); border-radius:10px; padding:8px 10px; background:var(--surface); color:var(--text); min-width: 260px;" type="search"/></div><div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-top:14px;"><div class="card" style="padding:14px;"><h3><a href="open-source-free-icon-sets.html">Open Source Free Icon Sets</a></h3><p class="mini">2026-02-21 · UI / Assets / Icons</p><p>Open-source icon libraries reference: platform recommendations, licenses, CDN links, and official “check latest version” links.</p></div><div class="card" style="padding:14px;"><h3><a href="design-heuristics-checklist.html">Design Heuristics Checklist</a></h3><p class="mini">2026-02-21 · UX / Checklist / Review</p><p>Nielsen’s 10 usability heuristics + actionable checks + a structured logging template for UX reviews.</p></div><div class="card" style="padding:14px;"><h3><a href="workflow-design-product-life-circle.html">Workflow Design During the Product Life Cycle</a></h3><p class="mini">2026-02-21 · UX / Process / Flows</p><p>A practical guide to flow artifacts in product design—what they are, when to use them, and how they fit into the product life cycle.</p></div></div></section>
+<footer>
+<p>© 2026 - Bonny Design</p>
+</footer>
+</main>
+</div>
+<script>
+(function () {
+  const root = document.documentElement;
+  const btn = document.getElementById("themeToggle");
+
+  function setTheme(theme){
+    root.setAttribute("data-theme", theme);
+    const isDark = theme === "dark";
+    if(btn){
+      btn.setAttribute("aria-pressed", String(isDark));
+      btn.setAttribute("aria-label", isDark ? "Toggle light mode" : "Toggle dark mode");
+    }
+    try { localStorage.setItem("theme", theme); } catch(e) {}
+  }
+
+  let saved = null;
+  try { saved = localStorage.getItem("theme"); } catch(e) {}
+  if(saved === "dark" || saved === "light") setTheme(saved);
+  else setTheme("light");
+
+  if(btn){
+    btn.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme") || "light";
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+  }
+})();
+
+document.addEventListener("DOMContentLoaded", function(){
+  const input = document.getElementById("kbSearch");
+  if(!input) return;
+  const cards = Array.from(document.querySelectorAll("main .card .card"));
+  input.addEventListener("input", function(){
+    const q = (input.value || "").trim().toLowerCase();
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(q) ? "" : "none";
+    });
+  });
+});
+</script>
+<button aria-label="Back to top" id="backToTop" type="button">
+  ↑ Top
+</button>
+</body>
+</html>

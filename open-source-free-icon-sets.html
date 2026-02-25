@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Open Source Free Icon Sets</title>
+<meta content="A practical reference for popular open-source icon sets—recommended usage, licenses, and CDN links." name="description"/>
+<style>
+:root{
+      /* Light mode (default) */
+      --bg: #e8e8e8;
+      --surface: #ffffff;
+      --surface-2: #f6f6f6;
+      --text: #121212;
+      --muted: #4b4b4b;
+      --line: #d5d5d5;
+      --accent: #2b6cff;
+      --accent2: #0aa37f;
+      --shadow: 0 12px 40px rgba(0,0,0,.10);
+
+      /* Toggle */
+      --toggle-track: #ffffff;
+      --toggle-track-border: #cfcfcf;
+      --toggle-knob: #ffffff;
+      --toggle-icon: #1f1f1f;
+      --toggle-track-shadow: 0 2px 10px rgba(0,0,0,.12);
+    }
+
+    html[data-theme="dark"]{
+      --bg: #212121;
+      --surface: #111111;
+      --surface-2: #161616;
+      --text: #f1f1f1;
+      --muted: #c9c9c9;
+      --line: #2b2b2b;
+      --accent: #7aa2ff;
+      --accent2: #7dffcf;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+
+      --toggle-track: #2a2a2a;
+      --toggle-track-border: #3a3a3a;
+      --toggle-knob: #1a1a1a;
+      --toggle-icon: #f1f1f1;
+      --toggle-track-shadow: 0 2px 12px rgba(0,0,0,.45);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    a{color: var(--accent); text-decoration: none}
+    a:hover{text-decoration: underline}
+
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
+
+    header{
+      position: relative;
+      padding:24px 18px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface) 80%, transparent));
+      border-radius:5px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size: 24px;
+      letter-spacing:-0.02em;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size: 16px;
+      max-width: none;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+    .chip{
+      padding:6px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+      font-size:13px;
+      white-space:nowrap;
+    }
+
+    main{margin-top:18px; display:flex; flex-direction:column; gap:16px;}
+
+    .card{
+      border:1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      border-radius:5px;
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:-0.01em;
+    }
+    h3{
+      margin:18px 0 8px;
+      font-size:18px;
+    }
+    p{margin:10px 0;color:var(--muted)}
+    ul{margin: 0; padding-left: 18px;}
+    li{margin:6px 0}
+
+    .callout{
+      border-left: 2px solid var(--accent2);
+      padding: 12px 14px;
+      background: color-mix(in srgb, var(--accent2) 10%, transparent);
+      border-radius: 5px;
+      margin-top: 12px;
+      color: var(--muted);
+    }
+    .callout strong{color:var(--text)}
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: color-mix(in srgb, var(--surface-2) 65%, transparent);
+      margin-top: 10px;
+      color: var(--muted);
+    }
+    .pill b{color:var(--text)}
+
+    .hr{height:1px;background:var(--line);margin:18px 0}
+
+    .mini{font-size:13px;color:var(--muted)}
+
+    .table-wrap{
+      overflow:auto;
+      border:1px solid var(--line);
+      border-radius:5px;
+      background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width: 900px;
+    }
+    thead th{
+      text-align:left;
+      padding:14px 14px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: var(--text);
+      font-weight:650;
+      border-bottom:1px solid var(--line);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+
+      vertical-align: top;
+    }
+    tbody td{
+      padding:14px;
+      border-bottom:1px solid color-mix(in srgb, var(--line) 85%, transparent);
+      vertical-align:top;
+      color:var(--muted);
+
+      font-size: 14px;
+
+      vertical-align: top;
+    }
+    tbody tr:hover td{background: color-mix(in srgb, var(--accent) 7%, transparent)}
+
+    footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      opacity:.9;
+    }
+
+    /* Top-right theme toggle (30% smaller) */
+    .topbar{
+      position:absolute;
+      top:14px;
+      right:14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .toggle{
+      appearance:none;
+      border: 1px solid var(--toggle-track-border);
+      background: var(--toggle-track);
+      width: 64px;
+      height: 31px;
+      border-radius: 999px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--toggle-track-shadow);
+      padding: 0;
+      outline: none;
+    }
+
+    .toggle:focus-visible{
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 35%, transparent), var(--toggle-track-shadow);
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--toggle-track-border));
+    }
+
+    .toggle .knob{
+      position:absolute;
+      top:4px;
+      left:4px;
+      width:23px;
+      height:23px;
+      border-radius: 999px;
+      background: var(--toggle-knob);
+      border: 1px solid color-mix(in srgb, var(--toggle-track-border) 70%, transparent);
+      transition: transform .22s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    html[data-theme="dark"] .toggle .knob{
+      transform: translateX(33px);
+    }
+
+    .toggle .icon{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width:16px;
+      height:16px;
+      color: var(--toggle-icon);
+      opacity: .9;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .toggle .sun{left:10px;}
+    .toggle .moon{right:10px;}
+
+    html[data-theme="light"] .toggle .sun{opacity:1; transform: translateY(-50%) scale(1);}
+    html[data-theme="light"] .toggle .moon{opacity:.45; transform: translateY(-50%) scale(.92);}
+
+    html[data-theme="dark"] .toggle .sun{opacity:.45; transform: translateY(-50%) scale(.92);}
+    html[data-theme="dark"] .toggle .moon{opacity:1; transform: translateY(-50%) scale(1);}
+
+    @media (prefers-reduced-motion: reduce){
+      .toggle .knob, .toggle .icon{transition:none}
+    }
+
+    /* Ensure table row content is top-aligned (override any browser defaults) */
+    tbody td{ vertical-align: top !important; }
+    tbody td ul{ margin-top: 0 !important; margin-bottom: 0 !important; }
+    tbody td li{ margin-top: 0 !important; margin-bottom: 6px !important; }
+/* small page-specific tweaks */
+code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12.5px;
+}
+.table-wrap table{ min-width: 980px; }
+
+
+
+/* Back to Top Button */
+#backToTop{
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  display: none;
+  transition: transform .2s ease, opacity .2s ease;
+}
+#backToTop:hover{ transform: translateY(-2px); }
+
+
+
+
+
+
+#cdnVersionNote br + *,
+#cdnVersionNote span,
+
+
+
+/* Improved code sample styling */
+pre{
+  background: #1e1e1e;
+  color: #f1f1f1;
+  padding: 12px 14px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 10px 0; /* reduced vertical spacing */
+}
+
+html[data-theme="light"] pre{
+  background:#1e1e1e;
+  color:#f1f1f1;
+}
+
+html[data-theme="dark"] pre{
+  background:#0d1117;
+  color:#e6edf3;
+}
+
+pre code{
+  background: transparent;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+
+/* Info Note (Blue) */
+#cdnVersionNote{
+  margin-bottom:20px;
+  background: rgba(43,108,255,0.08);
+  border-left:3px solid #2b6cff;
+  padding:12px 14px;
+  border-radius:5px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+#cdnVersionNote strong{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:15px;
+  color:#2b6cff;
+  margin-bottom:4px; /* reduced spacing */
+}
+
+/* Tips Box (Blue style with bulb icon) */
+.callout{
+  background: rgba(43,108,255,0.08);
+  border-left:3px solid #2b6cff;
+  padding:12px 14px;
+  border-radius:5px;
+  margin-top:12px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.callout strong{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#2b6cff;
+  margin-bottom:4px;
+}
+
+
+
+/* KB top navigation */
+.kb-nav{
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+.kb-nav-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:10px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.kb-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:600;
+  color: var(--text);
+}
+.kb-back:hover{ text-decoration:none; opacity:.85; }
+
+.kb-cats{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.kb-cat{
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--muted);
+  background: color-mix(in srgb, var(--surface-2) 65%, transparent);
+  font-size:13px;
+  white-space:nowrap;
+}
+.kb-cat:hover{ text-decoration:none; opacity:.85; }
+
+
+
+.callout p{
+  margin-top: 4px !important;
+}
+
+
+/* Icon page tip spacing refinement (v2) */
+.callout strong{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:14px;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+.callout{
+  padding-top:12px;
+}
+
+.callout p{
+  margin:2px 0 0 0 !important;
+  line-height:1.4;
+}
+</style>
+</head>
+<body><nav aria-label="Knowledge base navigation" class="kb-nav"><div class="kb-nav-inner"><a class="kb-back" href="kb-index.html">← Back</a><div class="kb-cats"><a class="kb-cat" href="kb-index.html">All</a><a class="kb-cat" href="kb-index.html">UI</a><a class="kb-cat" href="kb-index.html">UX</a><a class="kb-cat" href="kb-index.html">AI</a></div></div></nav>
+<div class="wrap">
+<header>
+<div aria-label="Theme toggle" class="topbar">
+<button aria-label="Toggle dark mode" aria-pressed="false" class="toggle" id="themeToggle" type="button">
+<svg aria-hidden="true" class="icon sun" fill="none" viewbox="0 0 24 24">
+<path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<svg aria-hidden="true" class="icon moon" fill="none" viewbox="0 0 24 24">
+<path d="M21 14.5A8.5 8.5 0 0 1 9.5 3a7 7 0 1 0 11.5 11.5Z" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span aria-hidden="true" class="knob"></span>
+</button>
+</div>
+<h1>Open Source Free Icon Sets</h1>
+<p class="subtitle">
+        A quick reference for common open source icon sets—recommended platform usage, license, and copy/paste CDN links for development.
+      </p>
+<div aria-label="topics" class="chips">
+<span class="chip">CDN</span>
+<span class="chip">License</span>
+<span class="chip">Web</span>
+<span class="chip">iOS</span>
+<span class="chip">Android</span>
+<span class="chip">Cross-platform</span>
+</div>
+</header>
+<main>
+<section class="card">
+<h2>Icon Set Table</h2>
+<p class="mini">
+<span style="font-size:16px;">Use this table to choose an icon set quickly, based on platform fit and licensing.</span>
+</p><div class="callout" id="cdnVersionNote"><strong>ⓘ Check the Latest CDN Version</strong><br/>Icon libraries release updates often. The CDN links in this table are versioned for stability. Before using in production, click “Check latest version” to confirm the newest version and the correct file path on the official site.</div>
+<div aria-label="Icon sets table" class="table-wrap" role="region" tabindex="0">
+<table>
+<thead>
+<tr>
+<th>Icon Set</th>
+<th>Link</th>
+<th>Platform</th>
+<th>License</th>
+<th>CDN link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Heroicons</b></td>
+<td><a href="https://heroicons.com/" rel="noopener noreferrer" target="_blank">https://heroicons.com/</a></td>
+<td>iOS-friendly / Web</td>
+<td>MIT</td>
+<td><div style="margin-bottom:6px;"><b>SVGs via jsDelivr (package)</b><br/><code>https://cdn.jsdelivr.net/npm/heroicons@2.1.5/</code>
+</div><div class="mini"><a href="https://heroicons.com/" rel="noopener noreferrer" target="_blank">Check latest version →</a></div></td>
+</tr><tr>
+<td><b>Lucide</b></td>
+<td><a href="https://lucide.dev/" rel="noopener noreferrer" target="_blank">https://lucide.dev/</a></td>
+<td>Web / Cross-platform</td>
+<td>ISC</td>
+<td><div style="margin-bottom:6px;"><b>UMD build (unpkg)</b><br/><code>https://unpkg.com/lucide@latest/dist/umd/lucide.min.js</code>
+</div><div class="mini"><a href="https://lucide.dev/" rel="noopener noreferrer" target="_blank">Check latest version →</a></div></td>
+</tr><tr>
+<td><b>Phosphor</b></td>
+<td><a href="https://phosphoricons.com/" rel="noopener noreferrer" target="_blank">https://phosphoricons.com/</a></td>
+<td>iOS / Android / Web</td>
+<td>MIT</td>
+<td><div style="margin-bottom:6px;"><b>Webfont + CSS (jsDelivr)</b><br/><code>https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css</code>
+</div><div class="mini"><a href="https://phosphoricons.com/" rel="noopener noreferrer" target="_blank">Check latest version →</a></div></td>
+</tr><tr>
+<td><b>Feather</b></td>
+<td><a href="https://feathericons.com/" rel="noopener noreferrer" target="_blank">https://feathericons.com/</a></td>
+<td>Web</td>
+<td>MIT</td>
+<td><div style="margin-bottom:6px;"><b>UMD (unpkg)</b><br/><code>https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js</code>
+</div><div class="mini"><a href="https://feathericons.com/" rel="noopener noreferrer" target="_blank">Check latest version →</a></div></td>
+</tr><tr>
+<td><b>Tabler Icons</b></td>
+<td><a href="https://tabler-icons.io/" rel="noopener noreferrer" target="_blank">https://tabler-icons.io/</a></td>
+<td>Web / Admin UI</td>
+<td>MIT</td>
+<td><div style="margin-bottom:6px;"><b>Webfont CSS (jsDelivr)</b><br/><code>https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css</code>
+</div><div class="mini"><a href="https://tabler-icons.io/" rel="noopener noreferrer" target="_blank">Check latest version →</a></div></td>
+</tr><tr>
+<td><b>Remix Icon</b></td>
+<td><a href="https://remixicon.com/" rel="noopener noreferrer" target="_blank">https://remixicon.com/</a></td>
+<td>Android-leaning / Web</td>
+<td>Apache-2.0</td>
+<td><div style="margin-bottom:6px;"><b>CSS (jsDelivr)</b><br/><code>https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css</code>
+</div><div class="mini"><a href="https://remixicon.com/" rel="noopener noreferrer" target="_blank">Check latest version →</a></div></td>
+</tr><tr>
+<td><b>Ionicons</b></td>
+<td><a href="https://ionic.io/ionicons" rel="noopener noreferrer" target="_blank">https://ionic.io/ionicons</a></td>
+<td>iOS + Android styles</td>
+<td>MIT</td>
+<td><div style="margin-bottom:6px;"><b>ESM (unpkg)</b><br/><code>https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js</code>
+</div><div style="margin-bottom:6px;"><b>Nomodule (unpkg)</b><br/><code>https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js</code>
+</div><div class="mini"><a href="https://ionic.io/ionicons" rel="noopener noreferrer" target="_blank">Check latest version →</a></div></td>
+</tr><tr>
+<td><b>Google Material Symbols / Icons</b></td>
+<td><a href="https://fonts.google.com/icons" rel="noopener noreferrer" target="_blank">https://fonts.google.com/icons</a></td>
+<td>Android &amp; Cross-platform</td>
+<td>Apache-2.0</td>
+<td><div style="margin-bottom:6px;"><b>Google Fonts CSS</b><br/><code>https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined</code>
+</div><div class="mini"><a href="https://fonts.google.com/icons" rel="noopener noreferrer" target="_blank">Check latest version →</a></div></td>
+</tr><tr>
+<td><b>Font Awesome (Free)</b></td>
+<td><a href="https://fontawesome.com/" rel="noopener noreferrer" target="_blank">https://fontawesome.com/</a></td>
+<td>Web / Cross-platform</td>
+<td>Free (mix: CC BY 4.0, SIL OFL 1.1, MIT)</td>
+<td><div style="margin-bottom:6px;"><b>CSS (cdnjs)</b><br/><code>https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css</code>
+</div><div class="mini"><a href="https://fontawesome.com/docs/web/setup/host-yourself" rel="noopener noreferrer" target="_blank">Check latest version →</a></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="hr"></div>
+<h3>How to use icons in development (CDN examples)</h3>
+<p>
+          Most icon libraries support multiple delivery methods (SVG files, npm packages, webfonts). For simple prototyping or static sites,
+          CDN is easiest. For production apps, bundling icons (tree-shaking) is often better for performance.
+        </p>
+<h3>1) CSS / Webfont icon sets (fastest setup)</h3>
+<p class="mini"><span style="font-size:16px;">Remix, Tabler webfont, Phosphor webfont variants, Font Awesome free.</span></p>
+<pre><code>&lt;!-- Example: Remix Icon --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"&gt;
+
+&lt;i class="ri-home-line"&gt;&lt;/i&gt;</code>
+    </pre>
+<pre><code>&lt;!-- Example: Font Awesome Free --&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"&gt;
+
+&lt;i class="fa-solid fa-user"&gt;&lt;/i&gt;</code>
+    </pre>
+<div class="hr"></div>
+<h3>2) JS replace() icon sets (inline SVG via script)</h3>
+<p class="mini"><span style="font-size:16px;">Feather and Lucide both support replacing placeholders with SVG.</span></p>
+<pre><code>&lt;!-- Example: Feather --&gt;
+&lt;script src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js"&gt;&lt;/script&gt;
+
+&lt;i data-feather="camera"&gt;&lt;/i&gt;
+
+&lt;script&gt;
+  feather.replace();
+&lt;/script&gt;</code>
+    </pre>
+<pre><code>&lt;!-- Example: Lucide (UMD) --&gt;
+&lt;script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"&gt;&lt;/script&gt;
+
+&lt;i data-lucide="alarm-clock"&gt;&lt;/i&gt;
+
+&lt;script&gt;
+  lucide.createIcons();
+&lt;/script&gt;</code>
+    </pre>
+<div class="hr"></div>
+<h3>3) Web components (Ionicons)</h3>
+<pre><code>&lt;script type="module" src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"&gt;&lt;/script&gt;
+&lt;script nomodule src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"&gt;&lt;/script&gt;
+
+&lt;ion-icon name="home-outline"&gt;&lt;/ion-icon&gt;</code>
+    </pre>
+<div class="hr"></div>
+<h3>4) Google Material Symbols (Google Fonts)</h3>
+<pre><code>&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" /&gt;
+
+&lt;span class="material-symbols-outlined"&gt;home&lt;/span&gt;</code>
+    </pre>
+<div class="callout">
+<strong>💡 Tip</strong><br/>
+          If you’re building a modern web app (React/Vue/Angular), prefer installing the library via npm and importing only the icons you use.
+          CDNs are best for quick demos, prototypes, and documentation pages.
+        </div>
+</section>
+<footer>
+<p>© 2026 - Bonny Design</p>
+</footer>
+</main>
+</div>
+<script>
+(function () {
+      const root = document.documentElement;
+      const btn = document.getElementById("themeToggle");
+
+      function setTheme(theme){
+        root.setAttribute("data-theme", theme);
+        const isDark = theme === "dark";
+        btn.setAttribute("aria-pressed", String(isDark));
+        btn.setAttribute("aria-label", isDark ? "Toggle light mode" : "Toggle dark mode");
+        try { localStorage.setItem("theme", theme); } catch(e) {}
+      }
+
+      let saved = null;
+      try { saved = localStorage.getItem("theme"); } catch(e) {}
+      if(saved === "dark" || saved === "light") setTheme(saved);
+      else setTheme("light");
+
+      btn.addEventListener("click", () => {
+        const current = root.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      });
+})()
+
+// Back to Top logic
+document.addEventListener("DOMContentLoaded", function () {
+  const backBtn = document.getElementById("backToTop");
+  if (!backBtn) return;
+
+  function toggleBackBtn() {
+    backBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  }
+
+  window.addEventListener("scroll", toggleBackBtn, { passive: true });
+  toggleBackBtn();
+
+  backBtn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+</script>
+<button aria-label="Back to top" id="backToTop" type="button">
+  ↑ Top
+</button>
+</body>
+</html>

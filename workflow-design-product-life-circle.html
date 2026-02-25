@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Work Flow Design During the Product Life Circle</title>
+<meta content="A practical guide to common flow artifacts in product design—who creates them, how they differ, when to use them, and when to produce them in the product life cycle." name="description"/>
+<style>
+    :root{
+      /* Light mode (default) */
+      --bg: #e8e8e8;
+      --surface: #ffffff;
+      --surface-2: #f6f6f6;
+      --text: #121212;
+      --muted: #4b4b4b;
+      --line: #d5d5d5;
+      --accent: #2b6cff;
+      --accent2: #0aa37f;
+      --shadow: 0 12px 40px rgba(0,0,0,.10);
+
+      /* Toggle */
+      --toggle-track: #ffffff;
+      --toggle-track-border: #cfcfcf;
+      --toggle-knob: #ffffff;
+      --toggle-icon: #1f1f1f;
+      --toggle-track-shadow: 0 2px 10px rgba(0,0,0,.12);
+    }
+
+    html[data-theme="dark"]{
+      --bg: #212121;
+      --surface: #111111;
+      --surface-2: #161616;
+      --text: #f1f1f1;
+      --muted: #c9c9c9;
+      --line: #2b2b2b;
+      --accent: #7aa2ff;
+      --accent2: #7dffcf;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+
+      --toggle-track: #2a2a2a;
+      --toggle-track-border: #3a3a3a;
+      --toggle-knob: #1a1a1a;
+      --toggle-icon: #f1f1f1;
+      --toggle-track-shadow: 0 2px 12px rgba(0,0,0,.45);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    a{color: var(--accent); text-decoration: none}
+    a:hover{text-decoration: underline}
+
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
+
+    header{
+      position: relative;
+      padding:24px 18px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface) 80%, transparent));
+      border-radius:5px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size: 24px;
+      letter-spacing:-0.02em;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size: 16px;
+      max-width: none;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+    .chip{
+      padding:6px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+      font-size:13px;
+      white-space:nowrap;
+    }
+
+    main{margin-top:18px; display:flex; flex-direction:column; gap:16px;}
+
+    .card{
+      border:1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      border-radius:5px;
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:-0.01em;
+    }
+    h3{
+      margin:18px 0 8px;
+      font-size:18px;
+    }
+    p{margin:10px 0;color:var(--muted)}
+    ul{margin: 0; padding-left: 18px;}
+    li{margin:6px 0}
+
+    .callout{
+      border-left: 2px solid var(--accent2);
+      padding: 12px 14px;
+      background: color-mix(in srgb, var(--accent2) 10%, transparent);
+      border-radius: 5px;
+      margin-top: 12px;
+      color: var(--muted);
+    }
+    .callout strong{color:var(--text)}
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: color-mix(in srgb, var(--surface-2) 65%, transparent);
+      margin-top: 10px;
+      color: var(--muted);
+    }
+    .pill b{color:var(--text)}
+
+    .hr{height:1px;background:var(--line);margin:18px 0}
+
+    .mini{font-size:13px;color:var(--muted)}
+
+    .table-wrap{
+      overflow:auto;
+      border:1px solid var(--line);
+      border-radius:5px;
+      background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width: 900px;
+    }
+    thead th{
+      text-align:left;
+      padding:14px 14px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: var(--text);
+      font-weight:650;
+      border-bottom:1px solid var(--line);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+
+      vertical-align: top;
+    }
+    tbody td{
+      padding:14px;
+      border-bottom:1px solid color-mix(in srgb, var(--line) 85%, transparent);
+      vertical-align:top;
+      color:var(--muted);
+
+      font-size: 14px;
+
+      vertical-align: top;
+    }
+    tbody tr:hover td{background: color-mix(in srgb, var(--accent) 7%, transparent)}
+
+    footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      opacity:.9;
+    }
+
+    /* Top-right theme toggle (30% smaller) */
+    .topbar{
+      position:absolute;
+      top:14px;
+      right:14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .toggle{
+      appearance:none;
+      border: 1px solid var(--toggle-track-border);
+      background: var(--toggle-track);
+      width: 64px;
+      height: 31px;
+      border-radius: 999px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--toggle-track-shadow);
+      padding: 0;
+      outline: none;
+    }
+
+    .toggle:focus-visible{
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 35%, transparent), var(--toggle-track-shadow);
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--toggle-track-border));
+    }
+
+    .toggle .knob{
+      position:absolute;
+      top:4px;
+      left:4px;
+      width:23px;
+      height:23px;
+      border-radius: 999px;
+      background: var(--toggle-knob);
+      border: 1px solid color-mix(in srgb, var(--toggle-track-border) 70%, transparent);
+      transition: transform .22s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    html[data-theme="dark"] .toggle .knob{
+      transform: translateX(33px);
+    }
+
+    .toggle .icon{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width:16px;
+      height:16px;
+      color: var(--toggle-icon);
+      opacity: .9;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .toggle .sun{left:10px;}
+    .toggle .moon{right:10px;}
+
+    html[data-theme="light"] .toggle .sun{opacity:1; transform: translateY(-50%) scale(1);}
+    html[data-theme="light"] .toggle .moon{opacity:.45; transform: translateY(-50%) scale(.92);}
+
+    html[data-theme="dark"] .toggle .sun{opacity:.45; transform: translateY(-50%) scale(.92);}
+    html[data-theme="dark"] .toggle .moon{opacity:1; transform: translateY(-50%) scale(1);}
+
+    @media (prefers-reduced-motion: reduce){
+      .toggle .knob, .toggle .icon{transition:none}
+    }
+
+    /* Ensure table row content is top-aligned (override any browser defaults) */
+    tbody td{ vertical-align: top !important; }
+    tbody td ul{ margin-top: 0 !important; margin-bottom: 0 !important; }
+    tbody td li{ margin-top: 0 !important; margin-bottom: 6px !important; }
+
+
+/* Back to Top Button */
+#backToTop{
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  display: none;
+  transition: transform .2s ease, opacity .2s ease;
+}
+#backToTop:hover{ transform: translateY(-2px); }
+
+
+/* Blue Info Note (Fast mental model) */
+.info-note{
+  background: rgba(43,108,255,0.08);
+  border-left: 3px solid #016BD5;
+}
+
+.info-note strong{
+  color:#016BD5;
+}
+
+
+/* Tip Box (Bulb Style) */
+.tip-box{
+  margin-top:8px;
+  background: rgba(1,107,213,0.08);
+  border-left: 3px solid #016BD5;
+  padding:12px 14px;
+  border-radius:5px;
+  margin-top:12px;
+}
+
+.tip-box strong{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#016BD5;
+  margin-bottom:4px; /* reduced spacing */
+}
+
+
+/* Tighter spacing inside tip box */
+.tip-box strong{ margin-bottom: 0 !important; }
+.tip-box ul{
+  margin: 4px 0 0 18px !important; /* reduce gap between title and bullets */
+  padding-left: 18px;
+}
+.tip-box li{ margin: 4px 0; }
+
+
+
+/* KB top navigation */
+.kb-nav{
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+.kb-nav-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:10px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.kb-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:600;
+  color: var(--text);
+}
+.kb-back:hover{ text-decoration:none; opacity:.85; }
+
+.kb-cats{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.kb-cat{
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--muted);
+  background: color-mix(in srgb, var(--surface-2) 65%, transparent);
+  font-size:13px;
+  white-space:nowrap;
+}
+.kb-cat:hover{ text-decoration:none; opacity:.85; }
+</style>
+</head>
+<body><nav aria-label="Knowledge base navigation" class="kb-nav"><div class="kb-nav-inner"><a class="kb-back" href="kb-index.html">← Back</a><div class="kb-cats"><a class="kb-cat" href="kb-index.html">All</a><a class="kb-cat" href="kb-index.html">UI</a><a class="kb-cat" href="kb-index.html">UX</a><a class="kb-cat" href="kb-index.html">AI</a></div></div></nav>
+<div class="wrap">
+<header>
+<div aria-label="Theme toggle" class="topbar">
+<button aria-label="Toggle dark mode" aria-pressed="false" class="toggle" id="themeToggle" type="button">
+<svg aria-hidden="true" class="icon sun" fill="none" viewbox="0 0 24 24">
+<path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<svg aria-hidden="true" class="icon moon" fill="none" viewbox="0 0 24 24">
+<path d="M21 14.5A8.5 8.5 0 0 1 9.5 3a7 7 0 1 0 11.5 11.5Z" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span aria-hidden="true" class="knob"></span>
+</button>
+</div>
+<h1>Work Flow Design During the Product Life Circle</h1>
+<p class="subtitle">
+        “Flows” are lightweight artifacts that help teams align on how users move through a product,
+        how screens connect, and what the system needs to do behind the scenes. This guide explains the
+        most common flow types, their differences, typical owners, and where they fit in the product life cycle.
+      </p>
+<div aria-label="topics" class="chips">
+<span class="chip">Task Flow</span>
+<span class="chip">User Flow</span>
+<span class="chip">Screen Flow</span>
+<span class="chip">Wireflow</span>
+<span class="chip">System Flow</span>
+<span class="chip">Journey Map</span>
+<span class="chip">Service Blueprint</span>
+</div>
+</header>
+<main>
+<section class="card">
+<h2>Core Concept</h2>
+<p>
+          Different “flows” answer different questions. The confusion usually happens when people use the word
+          <em>flow</em> for everything. Here’s the simplest way to separate them:
+        </p>
+<div class="callout info-note">
+<strong>Fast mental model</strong><br/>
+<span class="chip" style="display:inline-block; margin-top:8px">Task Flow</span> = one task, happy path (usually linear).<br/>
+<span class="chip" style="display:inline-block; margin-top:8px">User Flow</span> = end-to-end paths + decisions + edge cases.<br/>
+<span class="chip" style="display:inline-block; margin-top:8px">Screen Flow</span> = how screens connect (navigation structure).<br/>
+<span class="chip" style="display:inline-block; margin-top:8px">System Flow</span> = what the system does (backend logic + states).<br/>
+</div>
+<div class="hr"></div>
+<h3>Task Flow vs User Flow (Most Common Confusion)</h3>
+<p>
+<b>Task Flow</b> is narrow and specific—one goal, one main path. It’s great for designing a feature quickly.
+          <br/>
+<b>User Flow</b> is broader—includes branching decisions, alternate paths, and often error states.
+        </p>
+<div class="pill">
+<b>Remember:</b> Task Flow is a straight road. User Flow is a road with intersections.
+        </div>
+<div class="hr"></div>
+<h3>Where “Screen Flow” Fits</h3>
+<p>
+          A <b>Screen Flow</b> is UI-level: it shows how a user moves from screen to screen.
+          It often looks like a sitemap with arrows, or a set of screens connected by navigation paths.
+        </p>
+<ul>
+<li>Useful for planning navigation and information architecture</li>
+<li>Very common in mobile apps and SaaS dashboards</li>
+<li>Can evolve into a <b>Wireflow</b> if you connect actual wireframes</li>
+</ul>
+</section>
+<section class="card">
+<h2>When to Make Which Flow</h2>
+<p class="mini">
+<span style="font-size:16px;">You don’t need all of these for every project. Choose based on risk, complexity, and who needs alignment.</span>
+</p>
+<h3>Quick picks</h3>
+<ul>
+<li><b>New feature:</b> Task Flow → User Flow → Wireflow (if complex)</li>
+<li><b>New product:</b> Journey Map → User Flow → Screen Flow → Wireflow</li>
+<li><b>Backend-heavy:</b> User Flow + System Flow (with engineers)</li>
+<li><b>Enterprise service:</b> Journey Map + Service Blueprint</li>
+</ul>
+<div class="hr"></div>
+<h3>Common outputs</h3>
+<ul>
+<li>Design critique: Screen Flow / Wireflow</li>
+<li>Stakeholder alignment: User Flow</li>
+<li>Engineering planning: System Flow</li>
+<li>Strategy &amp; ops: Service Blueprint</li>
+</ul>
+</section>
+<section class="card">
+<h2>Flow Cheat-Sheet Table</h2>
+<p class="mini">
+<span style="font-size:16px;">Use this as a reference for ownership, differences, usage, and the best stage to produce each artifact.</span>
+</p>
+<div aria-label="Flow types table" class="table-wrap" role="region" tabindex="0">
+<table>
+<thead>
+<tr>
+<th>Flow</th>
+<th>Owner</th>
+<th>Description</th>
+<th>Stage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Task Flow</b></td>
+<td>UX / Product</td>
+<td>
+<ul>
+<li>One specific task, usually linear (happy path).</li>
+<li>Design or refine a single feature fast.</li>
+</ul>
+</td>
+<td>Definition → Early Design</td>
+</tr>
+<tr>
+<td><b>User Flow</b></td>
+<td>UX / Product</td>
+<td>
+<ul>
+<li>End-to-end journey with branches and edge cases.</li>
+<li>Align stakeholders, map paths, validate requirements.</li>
+</ul>
+</td>
+<td>Discovery → Definition</td>
+</tr>
+<tr>
+<td><b>Screen Flow</b></td>
+<td>UX / Product</td>
+<td>
+<ul>
+<li>Screen-to-screen navigation structure (UI-level).</li>
+<li>Plan navigation, IA, and product structure.</li>
+</ul>
+</td>
+<td>Definition → Early Design</td>
+</tr>
+<tr>
+<td><b>Wireflow</b></td>
+<td>UX / Product</td>
+<td>
+<ul>
+<li>Wireframes connected by arrows (screens + flow).</li>
+<li>Communicate UI structure + key interactions clearly.</li>
+</ul>
+</td>
+<td>Design</td>
+</tr>
+<tr>
+<td><b>System Flow</b></td>
+<td>Engineering</td>
+<td>
+<ul>
+<li>Backend logic, states, data processing, integrations.</li>
+<li>Plan APIs, validation, state management before build.</li>
+</ul>
+</td>
+<td>Design → Dev Planning</td>
+</tr>
+<tr>
+<td><b>Journey Map</b></td>
+<td>UXR / Product</td>
+<td>
+<ul>
+<li>Experience over time: emotions, touchpoints, pain points.</li>
+<li>Identify opportunities and prioritize improvements.</li>
+</ul>
+</td>
+<td>Discovery</td>
+</tr>
+<tr>
+<td><b>Service Blueprint</b></td>
+<td>Service / Senior UX</td>
+<td>
+<ul>
+<li>Adds frontstage + backstage processes to the experience.</li>
+<li>Align complex services across teams and ops.</li>
+</ul>
+</td>
+<td>Strategy → Definition</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="hr"></div>
+<div class="callout tip-box">
+<strong>💡 Tips</strong>
+<ul>
+<li>
+            If your diagram mostly shows <b>people’s actions</b> (Admin/User), it’s a
+            <b>user flow</b> or <b>role-based user flow</b>—even if someone labels it “system flow.”
+          </li>
+<li>
+            If it shows <b>screens</b> (A → B → C) and navigation, it’s a <b>screen flow</b>.
+            Add wireframes and it becomes a <b>wireflow</b>.
+          </li>
+<li>
+            If it shows <b>backend logic</b> (API, database, validation, state), it’s a <b>system flow</b>.
+          </li>
+</ul>
+</div>
+</section>
+<footer>
+<p>
+          © 2026 - Bonny Design
+        </p>
+</footer>
+</main>
+</div>
+<script>
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById("themeToggle");
+
+      function setTheme(theme){
+        root.setAttribute("data-theme", theme);
+        const isDark = theme === "dark";
+        btn.setAttribute("aria-pressed", String(isDark));
+        btn.setAttribute("aria-label", isDark ? "Toggle light mode" : "Toggle dark mode");
+        try { localStorage.setItem("theme", theme); } catch(e) {}
+      }
+
+      let saved = null;
+      try { saved = localStorage.getItem("theme"); } catch(e) {}
+      if(saved === "dark" || saved === "light") setTheme(saved);
+      else setTheme("light");
+
+      btn.addEventListener("click", () => {
+        const current = root.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      });
+      const yearEl = document.getElementById("year");
+      if(yearEl) yearEl.textContent = new Date().getFullYear();
+})();
+
+
+// Back to Top logic
+document.addEventListener("DOMContentLoaded", function () {
+  const backBtn = document.getElementById("backToTop");
+  if (!backBtn) return;
+
+  function toggleBackBtn() {
+    backBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  }
+
+  window.addEventListener("scroll", toggleBackBtn, { passive: true });
+  toggleBackBtn();
+
+  backBtn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+</script>
+<button aria-label="Back to top" id="backToTop" type="button">
+  ↑ Top
+</button>
+</body>
+</html>
