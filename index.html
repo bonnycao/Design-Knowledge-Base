@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Design Heuristics Checklist</title>
-<meta content="A practical UX review checklist based on Nielsen’s 10 usability heuristics, with actionable checks and a logging template." name="description"/>
+<title>Knowledge Base Index</title>
+<meta content="A searchable index for your UI/UX/AI knowledge base pages." name="description"/>
 <style>
 :root{
       /* Light mode (default) */
@@ -300,13 +300,58 @@ code{
 
 
 
+#cdnVersionNote br + *,
+#cdnVersionNote span,
 
 
 
+/* Improved code sample styling */
+pre{
+  background: #1e1e1e;
+  color: #f1f1f1;
+  padding: 12px 14px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 10px 0; /* reduced vertical spacing */
+}
+
+html[data-theme="light"] pre{
+  background:#1e1e1e;
+  color:#f1f1f1;
+}
+
+html[data-theme="dark"] pre{
+  background:#0d1117;
+  color:#e6edf3;
+}
+
+pre code{
+  background: transparent;
+  font-size: 13px;
+  line-height: 1.5;
+}
 
 
 
+/* Info Note (Blue) */
+#cdnVersionNote{
+  margin-bottom:20px;
+  background: rgba(43,108,255,0.08);
+  border-left:3px solid #2b6cff;
+  padding:12px 14px;
+  border-radius:5px;
+  font-size:14px;
+  color:var(--muted);
+}
 
+#cdnVersionNote strong{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:15px;
+  color:#2b6cff;
+  margin-bottom:4px; /* reduced spacing */
+}
 
 /* Tips Box (Blue style with bulb icon) */
 .callout{
@@ -327,97 +372,9 @@ code{
   margin-bottom:4px;
 }
 
-
-
-/* KB top navigation */
-.kb-nav{
-  position: sticky;
-  top: 0;
-  z-index: 10000;
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(10px);
-}
-.kb-nav-inner{
-  max-width:1100px;
-  margin:0 auto;
-  padding:10px 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-.kb-back{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  font-weight:600;
-  color: var(--text);
-}
-.kb-back:hover{ text-decoration:none; opacity:.85; }
-
-.kb-cats{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.kb-cat{
-  padding:6px 10px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  color:var(--muted);
-  background: color-mix(in srgb, var(--surface-2) 65%, transparent);
-  font-size:13px;
-  white-space:nowrap;
-}
-.kb-cat:hover{ text-decoration:none; opacity:.85; }
-
-
-main ul li{
-  margin: 8px 0;
-}
-
-
-/* Checklist list spacing refinement */
-main ul{
-  list-style: disc;
-  padding-left: 18px;
-}
-main ul li{
-  margin: 4px 0;
-  line-height: 1.35;
-}
-
-/* Make instructional text consistent */
-.mini{
-  font-size:16px;
-  color: var(--muted);
-}
-
-/* Template Box (Review logging structure) */
-.template-box{
-  border:1px solid var(--line);
-  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
-  padding:14px 16px;
-  border-radius:5px;
-  margin-top:10px;
-}
-
-.template-box ul{
-  list-style: disc;
-  padding-left:18px;
-  margin:6px 0 0 0;
-}
-
-.template-box li{
-  margin:6px 0;
-  line-height:1.4;
-  color:var(--text);
-}
 </style>
 </head>
-<body><nav aria-label="Knowledge base navigation" class="kb-nav"><div class="kb-nav-inner"><a class="kb-back" href="index.html">← Back</a><div class="kb-cats"><a class="kb-cat" href="index.html">All</a><a class="kb-cat" href="index.html">UI</a><a class="kb-cat" href="index.html">UX</a><a class="kb-cat" href="index.html">AI</a></div></div></nav>
+<body>
 <div class="wrap">
 <header>
 <div aria-label="Theme toggle" class="topbar">
@@ -432,12 +389,12 @@ main ul li{
 <span aria-hidden="true" class="knob"></span>
 </button>
 </div>
-<h1>Design Heuristics Checklist</h1>
-<p class="subtitle">A practical UX review checklist based on Nielsen’s 10 usability heuristics, with actionable checks you can paste into reviews or tickets.</p>
-<div aria-label="topics" class="chips"><span class="chip">UX Review</span><span class="chip">Checklist</span><span class="chip">Nielsen</span><span class="chip">Web</span><span class="chip">Mobile</span><span class="chip">AI UI</span></div>
+<h1>Knowledge Base Index</h1>
+<p class="subtitle">UI / UX / AI — One page per day. Unified template, searchable, and continuously expandable.</p>
+<div aria-label="topics" class="chips"><span class="chip">UI</span><span class="chip">UX</span><span class="chip">AI</span><span class="chip">Checklist</span><span class="chip">Patterns</span><span class="chip">Templates</span></div>
 </header>
 <main>
-<section class="card"><h2>Overview</h2><p class="">How to use: review → log findings → propose fixes → retest. Great for pre-launch QA, design reviews, and competitive UX audits.</p><div class="hr"></div><h3>Nielsen’s 10 heuristics (quick table)</h3><div aria-label="Heuristics table" class="table-wrap" role="region" tabindex="0"><table><thead><tr><th>Heuristic</th><th>Meaning</th><th>Examples</th></tr></thead><tbody><tr><td><b>Visibility of system status</b></td><td>Keep users informed about what’s going on through timely feedback.</td><td>Loading indicators, progress bars, success/error toasts</td></tr><tr><td><b>Match between system and the real world</b></td><td>Use language and concepts familiar to users; follow real-world conventions.</td><td>“Cart” vs “Order Container”; human-friendly dates and labels</td></tr><tr><td><b>User control and freedom</b></td><td>Support undo/redo, back, and cancel so users can recover from mistakes.</td><td>Undo action, Cancel upload, Back to previous step</td></tr><tr><td><b>Consistency and standards</b></td><td>Follow platform conventions and keep patterns consistent across the product.</td><td>Same button styles, same terminology, predictable layouts</td></tr><tr><td><b>Error prevention</b></td><td>Prevent problems before they happen rather than only displaying errors after.</td><td>Disable invalid actions, input constraints, confirmations for destructive actions</td></tr><tr><td><b>Recognition rather than recall</b></td><td>Minimize memory load by making options visible and information retrievable.</td><td>Autocomplete, recent items, inline hints, clear menus</td></tr><tr><td><b>Flexibility and efficiency of use</b></td><td>Enable shortcuts and accelerators for experienced users while remaining friendly to novices.</td><td>Keyboard shortcuts, bulk actions, power filters</td></tr><tr><td><b>Aesthetic and minimalist design</b></td><td>Remove irrelevant information; keep the UI focused and readable.</td><td>Reduce visual noise, clear hierarchy, one primary CTA</td></tr><tr><td><b>Help users recognize, diagnose, and recover from errors</b></td><td>Error messages should explain what happened and how to fix it.</td><td>Field-level errors, actionable guidance, recovery steps</td></tr><tr><td><b>Help and documentation</b></td><td>Provide help when needed, ideally contextual and searchable.</td><td>Tooltips, empty-state guidance, help center links</td></tr></tbody></table></div><p class="mini" style="font-size:13px;">Source: <a href="https://www.nngroup.com/articles/ten-usability-heuristics/" rel="noopener noreferrer" target="_blank">Nielsen Norman Group – 10 Usability Heuristics for User Interface Design ↗</a></p><div class="hr"></div><h3>Actionable checks (paste into reviews/tickets)</h3><p>Use these as a practical checklist by module:</p><h3>Feedback &amp; status</h3><ul><li>Is there a clear loading/saving/submitting state?</li><li>Does the UI confirm success/failure after actions?</li><li>For long-running tasks: progress, cancel, and/or background notifications?</li></ul><h3>Content &amp; IA</h3><ul><li>Does the page title clearly reflect the content?</li><li>Are primary buttons action-oriented (Save, Submit, Create)?</li><li>Is the same concept labeled consistently across screens?</li></ul><h3>Forms &amp; inputs</h3><ul><li>Are required fields clearly indicated?</li><li>Are errors shown near the field with cause + fix?</li><li>Are defaults, hints, and autocomplete used appropriately?</li></ul><h3>Navigation &amp; control</h3><ul><li>Can users go back / cancel / undo where appropriate?</li><li>Are destructive actions confirmed (delete, revoke access, pay)?</li><li>Does it follow platform conventions (Web/iOS/Android)?</li></ul><h3>Consistency &amp; accessibility</h3><ul><li>Are components and spacing consistent?</li><li>Is contrast sufficient and keyboard focus visible?</li><li>Do icons have labels/tooltips when meaning isn’t obvious?</li></ul><h3>AI UI add-ons</h3><ul><li>Does the AI output show uncertainty or sources when relevant?</li><li>Are there controls like stop, retry, edit, regenerate?</li><li>Is history available and outputs easy to copy/export?</li></ul><div class="hr"></div><h3>Fast logging template</h3><p>Nielsen’s heuristics define what to evaluate. The template below shows how to document findings during a UX review. It helps turn heuristic observations into clear, actionable tickets.</p><div class="template-box"><ul><li>Screen / Feature</li><li>Issue found</li><li>Heuristic</li><li>Impact</li><li>Recommended fix</li><li>How to validate</li></ul></div></section>
+<section class="card"><h2>Pages</h2><div class="pill"><b>Search</b> · <input id="kbSearch" placeholder="Search by title or tag…" style="border:1px solid var(--line); border-radius:10px; padding:8px 10px; background:var(--surface); color:var(--text); min-width: 260px;" type="search"/></div><div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-top:14px;"><div class="card" style="padding:14px;"><h3><a href="open-source-free-icon-sets.html">Open Source Free Icon Sets</a></h3><p class="mini">2026-02-21 · UI / Assets / Icons</p><p>Open-source icon libraries reference: platform recommendations, licenses, CDN links, and official “check latest version” links.</p></div><div class="card" style="padding:14px;"><h3><a href="design-heuristics-checklist.html">Design Heuristics Checklist</a></h3><p class="mini">2026-02-21 · UX / Checklist / Review</p><p>Nielsen’s 10 usability heuristics + actionable checks + a structured logging template for UX reviews.</p></div><div class="card" style="padding:14px;"><h3><a href="workflow-design-product-life-circle.html">Workflow Design During the Product Life Cycle</a></h3><p class="mini">2026-02-21 · UX / Process / Flows</p><p>A practical guide to flow artifacts in product design—what they are, when to use them, and how they fit into the product life cycle.</p></div></div></section>
 <footer>
 <p>© 2026 - Bonny Design</p>
 </footer>
@@ -445,42 +402,42 @@ main ul li{
 </div>
 <script>
 (function () {
-      const root = document.documentElement;
-      const btn = document.getElementById("themeToggle");
+  const root = document.documentElement;
+  const btn = document.getElementById("themeToggle");
 
-      function setTheme(theme){
-        root.setAttribute("data-theme", theme);
-        const isDark = theme === "dark";
-        btn.setAttribute("aria-pressed", String(isDark));
-        btn.setAttribute("aria-label", isDark ? "Toggle light mode" : "Toggle dark mode");
-        try { localStorage.setItem("theme", theme); } catch(e) {}
-      }
-
-      let saved = null;
-      try { saved = localStorage.getItem("theme"); } catch(e) {}
-      if(saved === "dark" || saved === "light") setTheme(saved);
-      else setTheme("light");
-
-      btn.addEventListener("click", () => {
-        const current = root.getAttribute("data-theme") || "light";
-        setTheme(current === "dark" ? "light" : "dark");
-      });
-})()
-
-// Back to Top logic
-document.addEventListener("DOMContentLoaded", function () {
-  const backBtn = document.getElementById("backToTop");
-  if (!backBtn) return;
-
-  function toggleBackBtn() {
-    backBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  function setTheme(theme){
+    root.setAttribute("data-theme", theme);
+    const isDark = theme === "dark";
+    if(btn){
+      btn.setAttribute("aria-pressed", String(isDark));
+      btn.setAttribute("aria-label", isDark ? "Toggle light mode" : "Toggle dark mode");
+    }
+    try { localStorage.setItem("theme", theme); } catch(e) {}
   }
 
-  window.addEventListener("scroll", toggleBackBtn, { passive: true });
-  toggleBackBtn();
+  let saved = null;
+  try { saved = localStorage.getItem("theme"); } catch(e) {}
+  if(saved === "dark" || saved === "light") setTheme(saved);
+  else setTheme("light");
 
-  backBtn.addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  if(btn){
+    btn.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme") || "light";
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+  }
+})();
+
+document.addEventListener("DOMContentLoaded", function(){
+  const input = document.getElementById("kbSearch");
+  if(!input) return;
+  const cards = Array.from(document.querySelectorAll("main .card .card"));
+  input.addEventListener("input", function(){
+    const q = (input.value || "").trim().toLowerCase();
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(q) ? "" : "none";
+    });
   });
 });
 </script>
